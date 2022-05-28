@@ -3,7 +3,6 @@ from rl.memory import SequentialMemory
 from rl.policy import LinearAnnealedPolicy, EpsGreedyQPolicy
 from tensorflow.keras.models import Sequential
 
-NB_STEPS = 50000
 
 def build_agent(
     model: Sequential,
@@ -14,10 +13,10 @@ def build_agent(
         attr='eps',
         value_max=1.,
         value_min=.1,
-        value_test=.2,
-        nb_steps=NB_STEPS)
+        value_test=.05,
+        nb_steps=10000)
     memory = SequentialMemory(
-        limit=1000,
+        limit=50000,
         window_length=3)
     dqn = DQNAgent(
         model=model,
@@ -26,5 +25,5 @@ def build_agent(
         enable_dueling_network=True,
         dueling_type='avg',
         nb_actions=actions,
-        nb_steps_warmup=1000)
+        nb_steps_warmup=100)
     return dqn
