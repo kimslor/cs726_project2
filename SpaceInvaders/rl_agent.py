@@ -16,7 +16,7 @@ def build_agent(
         value_test=.05,
         nb_steps=10000)
     memory = SequentialMemory(
-        limit=50000,
+        limit=1000,
         window_length=3)
     dqn = DQNAgent(
         model=model,

@@ -47,15 +47,16 @@ def train_model() -> None:
     env.close()
 
 def test_model() -> None:
-    env, model, dqn = initialize_model(True)
+    env, model, dqn = initialize_model(False)
 
     # Load a trained model
-    dqn.load_weights('SavedWeights/100k/dqn_weights.h5f')
+    dqn.load_weights('SavedWeights/Old_Weights/100k/dqn_weights.h5f')
 
     # Test model
     scores = dqn.test(
         env=env,
-        nb_episodes=10)
+        nb_episodes=10,
+        visualize=False)
     print(np.mean(scores.history['episode_reward']))
 
     # Close environment

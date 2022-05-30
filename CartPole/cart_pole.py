@@ -46,7 +46,7 @@ def test_model() -> None:
     # Test model
     scores = dqn.test(
         env=env,
-        visualize=True,
+        visualize=False,
         nb_episodes=10,
         verbose=2)
     print(np.mean(scores.history['episode_reward']))
